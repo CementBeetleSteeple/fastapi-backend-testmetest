@@ -8,3 +8,9 @@ FastAPI microservice deployed on AWS ECS Fargate.
 - JWT auth
 - AWS ECS Fargate + ECR
 - GitHub Actions CI/CD
+
+## Architecture
+
+```
+GitHub Actions CI/CD → ECR → ECS Fargate → RDS PostgreSQL
+```
