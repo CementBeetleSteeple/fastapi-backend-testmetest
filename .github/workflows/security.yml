@@ -1,0 +1,21 @@
+name: Security Scan
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  push:
+    branches: [main]
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t testmetest-backend:scan .
+      - uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'testmetest-backend:scan'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
